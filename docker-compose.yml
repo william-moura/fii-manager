@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  web-fii:
+    image: nginx:latest
+    container_name: web-nginx-fii
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/www
+      - ./site.conf:/etc/nginx/conf.d/site.conf
+    links:
+      - php-fii
+    networks:
+      - fii
+  php-fii:
+    build: .
+    # image: php:7.4-fpm
+    container_name: php-fii
+    volumes:
+    - ./:/www
+    ports:
+      - "9000:9000"
+    networks:
+      - fii
+    depends_on:
+      - redis
+      - db
+  db-fii:
+    image: mysql:latest
+    container_name: mysql-fii
+    volumes:
+      # - ./storage/database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./storage/test:/var/lib/mysql
+    ports:
+      - 3309:3306
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fii
+      MYSQL_USER: william
+      MYSQL_PASSWORD: william
+    networks:
+      - fii
+  redis-fii:
+    image: redis:latest
+    container_name: redis-fii
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: /bin/sh -c "redis-server --requirepass $$REDIS_HOST_PASSWORD"
+    ports:
+      - 6379:6379
+    networks:
+      - fii
+    environment:      
+      REDIS_HOST_PASSWORD: william
+      REDIS_PASSWORD: william
+      
+networks:
+  fii:
+    driver: bridge
