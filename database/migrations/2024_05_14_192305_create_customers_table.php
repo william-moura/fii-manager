@@ -11,12 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fiis', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->increments('id')->unsigned()->primary();
-            $table->string('fii_code');
-            $table->decimal('fii_price', 12, 2);
-            $table->string('fii_description')->nullable();
-            
+            $table->string('customer_name');
+            $table->string('customer_email');
+            $table->string('customer_document');
+            $table->bigInteger('user_id')->unsigned();
+
+            // foreign key
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fiis');
+        Schema::dropIfExists('customers');
     }
 };
