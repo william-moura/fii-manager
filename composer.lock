@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c133b312fe180afc0f2b635022ad80ac",
+    "content-hash": "1bb222fc38c17c4267d39fc568152886",
     "packages": [
         {
             "name": "brick/math",
@@ -5755,6 +5755,49 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "william-moura/price-fii",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/william-moura/price-fii.git",
+                "reference": "7c44dc40b129dd3473caf4708b96a1de2a11c166"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/william-moura/price-fii/zipball/7c44dc40b129dd3473caf4708b96a1de2a11c166",
+                "reference": "7c44dc40b129dd3473caf4708b96a1de2a11c166",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^11.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WilliamMoura\\PriceFii\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Moura",
+                    "email": "williammoura908@gmail.com"
+                }
+            ],
+            "description": "get last price fundos de investimentos imobiliários.",
+            "support": {
+                "issues": "https://github.com/william-moura/price-fii/issues",
+                "source": "https://github.com/william-moura/price-fii/tree/v1.0"
+            },
+            "time": "2024-06-03T14:49:00+00:00"
         }
     ],
     "packages-dev": [
