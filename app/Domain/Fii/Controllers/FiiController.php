@@ -14,6 +14,11 @@ class FiiController extends Controller
     }
     public function index(Request $request)
     {
-        return $this->service->index();        
+        return $this->service->index();
+    }
+
+    public function store(Request $request)
+    {
+        return $this->service->store($request->all());
     }
 }
